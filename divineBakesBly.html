@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Bakes</title>
+<style>
+
+    @font-face {
+        font-family: 'eutemia';
+        src: url('Eutemia.ttf'); 
+      }
+
+      @font-face {
+        font-family: 'beyondWonderland';
+        src: url('Beyond Wonderland.ttf'); 
+      }
+
+      @font-face {
+        font-family: 'loversQuarrel';
+        src: url('LoversQuarrel-Regular.ttf'); 
+      }
+
+      @font-face {
+        font-family: 'Carnevalee Freakshow';
+        src: url('Carnevalee Freakshow.ttf'); 
+      }
+
+      @font-face {
+        font-family: 'pricedown bl';
+        src: url('RemachineScript_Personal_Use.ttf'); 
+      }
+
+      .navbar {
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 0 20px;
+}
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: #2e2e2e;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -45px;
+  }
+
+  .image-slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .image-slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .image-slide img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0px;
+    opacity: 0.4;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 35px;
+    left: 35px;
+    z-index: 999;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+  }
+
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  .text-container {
+    width: 100%;
+    height: 15%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+  }
+
+  .text-container2 {
+    width: 100%;
+    height: 10%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom : 0px;
+    box-sizing: border-box;
+    color: #fff;
+  }
+
+  .text-container3 {
+    width: 100%;
+    height: 5%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding-top: 0px;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .text-container4 {
+    width: 100%;
+    height: 5%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding-top: 0px;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .text-container5 {
+    width: 100%;
+    height: 53%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding-top: 0px;
+    color: #000000;
+    margin-bottom: 0;
+  }
+
+  .text-container6 {
+    width: 100%;
+    height: 45%; 
+    background-color: #2e2e2e;
+    text-align: center;
+    padding-top: 0px;
+    color: #000000;
+    margin-bottom: 70px;
+  }
+
+  .slideshow {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px; 
+  margin-bottom: 0; 
+}
+
+  .slideshow-item {
+    display: none;
+    width: 100%;
+    margin:0px;
+    padding: 0px;
+  }
+
+  .slideshow-item.active {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slideshow-item img,
+  .slideshow-item p {
+    width: 50%;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .slideshow-item img {
+    height: auto;
+    width:23.33%;
+    border: 5px solid black; 
+    box-sizing: border-box;
+  }
+
+  .fixed-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0); 
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #text1{
+    font-family: 'loversQuarrel';
+    font-size: 55px;
+    margin-bottom: -30px;
+    text-align: center;
+  }
+
+  #text2{
+    font-family: 'Carnevalee Freakshow';
+    font-size: 40px;
+    text-align: center;
+    color:rgb(0, 0, 0);
+  }
+
+  #text3{
+    font-family: 'beyondWonderland';
+    font-size: 35px;
+    text-align: left;
+    color:rgb(0, 0, 0);
+    text-decoration: double;
+  }
+
+  #text4{
+    font-family: 'beyondWonderland';
+    font-size: 30px;
+    text-align: justify;
+    color:rgb(0, 0, 0);
+  }
+
+  #text5{
+    font-family: 'pricedown bl';
+    font-size: 35px;
+    text-align: center;
+    margin-top:5px;
+  }
+
+  #text6{
+    font-family: 'beyondWonderland';
+    font-size: 65px;
+    text-align: center;
+    margin-left: 20px;
+    color:rgb(246, 246, 246);
+    margin-bottom:15px;
+    text-decoration: double;
+  }
+
+  #text7{
+    font-family: 'beyondWonderland';
+    font-size: 45px;
+    margin-top: 0px;
+    margin-left: 20px;
+    text-align: left;
+    color:rgb(255, 255, 255);
+  }
+
+  #text8{
+    font-family: 'Comic Sans MS';
+    font-size: 20px;
+    margin-top: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+    color:rgb(0, 0, 0);
+  }
+
+  .image-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 20px;
+  margin-bottom: 0 px;
+}
+
+.image-box {
+  text-align: center;
+  padding-bottom: 0px;
+}
+
+.round-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding-bottom: -70px;
+  padding: 5px;
+  border: 3px solid black; 
+}
+
+.round-image img {
+  width: 100%;
+  height: auto;
+}
+
+hr {
+    width: 100%;
+    margin-top: -20px;
+    border: none; 
+    height: 3px; 
+    background-color: black; 
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 25px; 
+  margin-bottom: 20px; 
+}
+
+.gallery-container img {
+  width: 230px; 
+  height: 230px; 
+  max-width: 100%; 
+  max-height: 100%; 
+  padding: 10px;
+  margin: 20px; 
+  border: 5px solid black; 
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index:1;
+  clear: both;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    height: 100vh; /* Set container height to full viewport height */
+  }
+
+  .image-slider {
+    height: 100%; /* Ensure image slider takes full height of the container */
+  }
+
+  .image-slide {
+    height: 100%; /* Ensure image slides take full height of the container */
+  }
+
+  .image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the entire container */
+  }
+
+  .text-container {
+    height: auto; /* Adjust height of text container */
+  }
+
+  .slideshow {
+    display: none;
+  }
+
+  #text1 {
+    font-size: 35px; /* Adjust font size for smaller screens */
+    margin-bottom: -20px; /* Adjust margin for smaller screens */
+  }
+
+  #text8 {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  .footer {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 8px 0; /* Adjust padding for smaller screens */
+  }
+
+  .overlay {
+    width: 100px; /* Adjust width for smaller devices */
+    height: 100px; /* Adjust height for smaller devices */
+  }
+
+  .overlay img {
+    border-radius: 50%; /* Make the image circular */
+  }
+  .navbar {
+    flex-wrap: wrap; /* Allow navigation items to wrap onto multiple lines */
+    justify-content: center; /* Center-align navigation items */
+  }
+
+  .navbar a {
+    padding: 10px; /* Increase padding for better touch target */
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .image-container {
+    flex-direction: column;
+  }
+
+  .round-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .text-container {
+    padding: 10px;
+  }
+
+  .text-container2{
+    display: none;
+  }
+  .text-container3,
+  .text-container4,
+  .text-container5,
+  .text-container6 {
+    padding: 5px;
+  }
+
+  .gallery-container img {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+
+  #text1 {
+    font-size: 25px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #text1 {
+    font-size: 25px; /* Further adjust font size for smaller screens */
+    margin-bottom: -15px; /* Further adjust margin for smaller screens */
+  }
+
+  .slideshow {
+    display: none;
+  }
+  #text8 {
+    font-size: 10px; /* Adjust font size for smaller screens */
+  }
+
+  .footer {
+    font-size: 10px; /* Further adjust font size for smaller screens */
+    padding: 3px 0; /* Further adjust padding for smaller screens */
+  }
+
+  .overlay {
+    width: 80px; /* Further adjust width for even smaller devices */
+    height: 80px; /* Further adjust height for even smaller devices */
+  }
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+    <div class="navbar">
+  <a href="divineBakesBly.html">Home</a>
+  <a href="#menu">Menu</a>
+  <a href="#aboutus">About Us</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#promises">What we promise</a>
+  <a href="#contactus">Contact Us</a>
+</div>
+
+<div class="container">
+  <div class="overlay">
+    <img src="dbmain.png" alt="Profile Picture" width="100%" height="100%">
+  </div>
+  
+  <div class="image-slider" id="image-slider">
+    <div class="image-slide">
+      <img src="test.jpg" alt="Image 1">
+    </div>
+    <div class="image-slide">
+      <img src="test2.jpg" alt="Image 2">
+    </div>
+    <div class="image-slide">
+      <img src="test3.jpg" alt="Image 3">
+    </div>
+  </div>
+  <div class="fixed-text">
+    <h1 id="text1"> "Once upon a time, in a land of magic and wonder, there was a bakery where every bite tasted 'simply divine'"</h1>
+    <p id="text2"> We Hereby, Welcome you to the DIVINE BAKES</p>
+  </div>
+  <div class="prev" onclick="prevSlide()">&#10094;</div>
+  <div class="next" onclick="nextSlide()">&#10095;</div>
+</div>
+
+<div class="text-container" id="promises">
+  <p id="text3">Presenting the assurance we extend to you.....</p>
+  <hr>
+</div>
+
+<div class="image-container" id="image-container">
+<div class="image-box">
+  <img src="homemade.png" alt="Image 1" class="round-image">
+  <p id="text5">"Feel the <br>
+      handmade goodness"</p>
+</div>
+<div class="image-box">
+  <img src="freshness.png" alt="Image 1" class="round-image">
+  <p id="text5">"Freshly made, <br>
+      simply irresistible"</p>
+</div>
+<div class="image-box">
+  <img src="forthefoodies.png" alt="Image 1" class="round-image">
+  <p id="text5">"Satisfying the palates <br>
+      of dessert enthusiats"</p>
+</div>
+<div class="image-box">
+  <img src="quality.png" alt="Image 3" class="round-image">
+  <p id="text5">"Uncompromising Quality, <br>
+      Wallet-friendly Prices"</p>
+</div>
+</div>
+<hr>
+
+<div class="slideshow" id="slideshow">
+  <div class="slideshow-item active">
+    <img src="custom_1.jpg" alt="Image 3">
+    <p id="text2">Share your cake vision, and we'll handcraft a personalized masterpiece just for you."</p>
+    <img src="custom_2.jpg" alt="Image 3">
+  </div>
+  <div class="slideshow-item">
+    <p id="text2"> "Experience the joy of mouthwatering delights that will leave you craving for more!"</p>
+    <img src="dbmain.png" alt="Image 2">
+    <p id="text2">"Unlock the taste of blissful cakes, a quick call is all it takes!" <br> Get in touch with us!!</p>
+  </div>
+  <div class="slideshow-item">
+    <img src="custom_3.jpg" alt="Image 3">
+    <p id="text2">"Immerse yourself in the melodic delights of our Music-Themed cakes." </p>
+    <img src="custom_4.jpg" alt="Image 3">
+  </div>
+  <div class="slideshow-item">
+    <p id="text2"> "Experience the joy of mouthwatering delights that will leave you craving for more!"</p>
+    <img src="dbmain.png" alt="Image 2">
+    <p id="text2">"Unlock the taste of blissful cakes, a quick call is all it takes!" <br> Get in touch with us!!</p>
+  </div>
+</div>
+
+<div class="text-container2" id="gallery">
+    <p id="text6">   Gallery</p><hr>
+</div> 
+<div class="text-container3" id="menu">
+  <p id="text7"><u> Customized cakes</u></p><br>
+</div> 
+
+
+<div class="gallery-container">
+  <img src="custom_16.jpg" alt="Image 1">
+  <img src="custom_18.jpg" alt="Image 2">
+  <img src="custom_13.jpg" alt="Image 3">
+  <img src="custom_12.jpg" alt="Image 4">
+  <img src="custom_5.jpg" alt="Image 5">
+  <img src="custom_6.jpg" alt="Image 6">
+  <img src="custom_7.jpg" alt="Image 7">
+  <img src="custom_8.jpg" alt="Image 8">
+  <img src="custom_9.jpg" alt="Image 9">
+  <img src="custom_10.jpg" alt="Image 10">
+  <img src="custom_11.jpg" alt="Image 11">
+  <img src="custom_1.jpg" alt="Image 12">
+  <img src="custom_2.jpg" alt="Image 13">
+  <img src="custom_14.jpg" alt="Image 14">
+  <img src="custom_15.jpg" alt="Image 15">
+  <img src="custom_3.jpg" alt="Image 16">
+  <img src="custom_17.jpg" alt="Image 17">
+  <img src="custom_18.jpg" alt="Image 18">
+  <img src="custom_19.jpg" alt="Image 19">
+  <img src="custom_20.jpg" alt="Image 20">
+</div>
+
+<div class="text-container4">
+  <hr>
+  <p id="text7"><u> Simple & Elegant cakes</u></p><br>
+</div> 
+
+<div class="gallery-container">
+  <img src="simple_1.jpg" alt="Image 1">
+  <img src="simple_2.jpg" alt="Image 2">
+  <img src="simple_4.jpg" alt="Image 4">
+  <img src="simple_5.jpg" alt="Image 5">
+  <img src="simple_7.jpg" alt="Image 7">
+  <img src="simple_8.jpg" alt="Image 8">
+  <img src="simple_9.jpg" alt="Image 9">
+  <img src="simple_10.jpg" alt="Image 10">
+  <img src="simple_11.jpg" alt="Image 11">
+  <img src="simple_12.jpg" alt="Image 12">
+  <img src="simple_13.jpg" alt="Image 13">
+  <img src="simple_14.jpg" alt="Image 14">
+  <img src="simple_15.jpg" alt="Image 15">
+  <img src="simple_16.jpg" alt="Image 16">
+  <img src="simple_17.jpg" alt="Image 17">
+  <img src="simple_18.jpg" alt="Image 18">
+  <img src="simple_19.jpg" alt="Image 19">
+  <img src="simple_20.jpg" alt="Image 20">
+</div>
+
+<div class="text-container5" id="aboutus">
+  <hr>
+  <p id="text7"><u>About Us</u></p>
+  <p id="text8">Welcome to Divine Bakes, where we believe in crafting moments of joy through delightful treats. Our journey began with a passion for baking and a commitment to sharing our love for scrumptious desserts with the world.
+  At Divine Bakes, every confection we create tells a story of dedication, creativity, and quality. From artisanal cakes to heavenly pastries, each bite is crafted with precision and care to ensure an unforgettable experience for our customers.</p>
+  <p id="text8">What sets us apart is our dedication to using only the finest ingredients, sourced locally whenever possible, to create treats that not only taste divine but also reflect our commitment to sustainability and community support.</p>
+  <p id="text8">Whether you're celebrating a special occasion or simply craving a sweet indulgence, Divine Bakes is here to make every moment sweeter. Join us on this delicious journey and experience the magic of Divine Bakes!</p>
+</div>
+
+<!-- Contact Us section -->
+<div class="text-container6" id="contactus">
+  <hr>
+  <p id="text7"><u>Contact Us</u></p>
+  <p id="text8">We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out to us using the contact information below:</p>
+  <p id="text8">Phone: 7819829467 | Instagram: divinebakes.bly</p>
+  <p id="text8">We're here to assist you and make your Divine Bakes experience as delightful as our treats!</p>
+</div>
+
+<footer class="footer">
+  <!-- Add your footer content here -->
+  <p>© 2024 Divine Bakes. All rights reserved.</p>
+</footer>
+
+<script>
+  let index = 0;
+  const slides = document.querySelectorAll('.image-slide');
+  const totalSlides = slides.length;
+
+  function showSlide(n) {
+    index = n % totalSlides;
+    if (index < 0) {
+      index = totalSlides - 1;
+    }
+    document.getElementById('image-slider').style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    showSlide(index + 1);
+  }
+
+  function prevSlide() {
+    showSlide(index - 1);
+  }
+
+  setInterval(nextSlide, 3000);
+
+  // Slideshow functionality
+  const slideshowItems = document.querySelectorAll('.slideshow-item');
+  let slideshowIndex = 0;
+
+  function nextSlideshow() {
+    slideshowItems[slideshowIndex].classList.remove('active');
+    slideshowIndex = (slideshowIndex + 1) % slideshowItems.length;
+    slideshowItems[slideshowIndex].classList.add('active');
+  }
+  setInterval(nextSlideshow, 7000);
+</script>
+
+</body>
+</html>
