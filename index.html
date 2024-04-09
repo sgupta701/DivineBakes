@@ -37,6 +37,9 @@
   justify-content: space-around;
   align-items: center;
   height: 50px;
+  position: fixed; /* Fixed position */
+  top: 0; /* Fixed at the top */
+  width: 100%; /* Full width */
 }
 
 .navbar a {
@@ -90,8 +93,8 @@
 
   .overlay {
     position: fixed;
-    top: 35px;
-    left: 35px;
+    top: 45px;
+    left: 45px;
     z-index: 999;
     border-radius: 50%;
     overflow: hidden;
@@ -143,22 +146,24 @@
 
   .text-container3 {
     width: 100%;
-    height: 5%; 
+    height: 10%; 
     background-color: #2e2e2e;
     text-align: center;
-    padding-top: 0px;
+    padding-top: 13px;
     color: #fff;
     margin-bottom: 0;
+    cursor: pointer;
   }
 
   .text-container4 {
     width: 100%;
-    height: 5%; 
+    height: 10%; 
     background-color: #2e2e2e;
     text-align: center;
     padding-top: 0px;
     color: #fff;
     margin-bottom: 0;
+    cursor: pointer;
   }
 
   .text-container5 {
@@ -166,7 +171,7 @@
     height: 53%; 
     background-color: #2e2e2e;
     text-align: center;
-    padding-top: 0px;
+    padding-top: 40px;
     color: #000000;
     margin-bottom: 0;
   }
@@ -278,7 +283,7 @@
   }
 
   #text7{
-    font-family: 'beyondWonderland';
+    font-family: 'Carnevalee Freakshow';
     font-size: 45px;
     margin-top: 0px;
     margin-left: 20px;
@@ -365,25 +370,25 @@ hr {
 
 @media only screen and (max-width: 768px) {
   .container {
-    height: 100vh; /* Set container height to full viewport height */
+    height: 100vh;
   }
 
   .image-slider {
-    height: 100%; /* Ensure image slider takes full height of the container */
+    height: 100%; 
   }
 
   .image-slide {
-    height: 100%; /* Ensure image slides take full height of the container */
+    height: 100%; 
   }
 
   .image-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure images cover the entire container */
+    object-fit: cover; 
   }
 
   .text-container {
-    height: auto; /* Adjust height of text container */
+    height: auto;
   }
 
   .slideshow {
@@ -391,34 +396,34 @@ hr {
   }
 
   #text1 {
-    font-size: 35px; /* Adjust font size for smaller screens */
-    margin-bottom: -20px; /* Adjust margin for smaller screens */
+    font-size: 35px; 
+    margin-bottom: -20px;
   }
 
   #text8 {
-    font-size: 12px; /* Adjust font size for smaller screens */
+    font-size: 12px; 
   }
 
   .footer {
-    font-size: 14px; /* Adjust font size for smaller screens */
-    padding: 8px 0; /* Adjust padding for smaller screens */
+    font-size: 14px; 
+    padding: 8px 0; 
   }
 
   .overlay {
-    width: 100px; /* Adjust width for smaller devices */
-    height: 100px; /* Adjust height for smaller devices */
+    width: 100px; 
+    height: 100px; 
   }
 
   .overlay img {
-    border-radius: 50%; /* Make the image circular */
+    border-radius: 50%;
   }
   .navbar {
-    flex-wrap: wrap; /* Allow navigation items to wrap onto multiple lines */
-    justify-content: center; /* Center-align navigation items */
+    flex-wrap: wrap; 
+    justify-content: center; 
   }
 
   .navbar a {
-    padding: 10px; /* Increase padding for better touch target */
+    padding: 10px; 
   }
 }
 
@@ -453,31 +458,39 @@ hr {
   }
 
   #text1 {
-    font-size: 25px; /* Adjust font size for smaller screens */
+    font-size: 25px; 
+  }
+
+  #text7 {
+    font-size: 25px; 
+  }
+
+  .text-container4 #text7 {
+    font-size: 25px; 
   }
 }
 
 @media only screen and (max-width: 480px) {
   #text1 {
-    font-size: 25px; /* Further adjust font size for smaller screens */
-    margin-bottom: -15px; /* Further adjust margin for smaller screens */
+    font-size: 25px; 
+    margin-bottom: -15px; 
   }
 
   .slideshow {
     display: none;
   }
   #text8 {
-    font-size: 10px; /* Adjust font size for smaller screens */
+    font-size: 10px; 
   }
 
   .footer {
-    font-size: 10px; /* Further adjust font size for smaller screens */
-    padding: 3px 0; /* Further adjust padding for smaller screens */
+    font-size: 10px; 
+    padding: 3px 0; 
   }
 
   .overlay {
-    width: 80px; /* Further adjust width for even smaller devices */
-    height: 80px; /* Further adjust height for even smaller devices */
+    width: 80px; 
+    height: 80px; 
   }
 
 }
@@ -514,7 +527,7 @@ hr {
     </div>
   </div>
   <div class="fixed-text">
-    <h1 id="text1"> "Once upon a time, in a land of magic and wonder, there was a bakery where every bite tasted 'simply divine'"</h1>
+    <h1 id="text1"> "Once upon a time, in a land of magic and wonder, there was a bakery where every bite tasted 'simply divine' "</h1>
     <p id="text2"> We Hereby, Welcome you to the DIVINE BAKES</p>
   </div>
   <div class="prev" onclick="prevSlide()">&#10094;</div>
@@ -576,12 +589,13 @@ hr {
 <div class="text-container2" id="gallery">
     <p id="text6">   Gallery</p><hr>
 </div> 
-<div class="text-container3" id="menu">
-  <p id="text7"><u> Customized cakes</u></p><br>
+
+<div class="text-container3" id="menu" onclick="toggleCustomizedCakes()" onmouseover="changeCursor(this)" onmouseout="defaultCursor(this)">
+  <p id="text7"><u>Customized cakes >>></u></p>
 </div> 
 
-
-<div class="gallery-container">
+<div class="gallery-container" id="customizedCakes" style="display:none;">
+  
   <img src="custom_16.jpg" alt="Image 1">
   <img src="custom_18.jpg" alt="Image 2">
   <img src="custom_13.jpg" alt="Image 3">
@@ -604,12 +618,12 @@ hr {
   <img src="custom_20.jpg" alt="Image 20">
 </div>
 
-<div class="text-container4">
-  <hr>
-  <p id="text7"><u> Simple & Elegant cakes</u></p><br>
+<div class="text-container4" id="menu" onclick="toggleSimpleElegantCakes()" onmouseover="changeCursor(this)" onmouseout="defaultCursor(this)">
+  <p id="text7"><u>Simple & Elegant cakes >>></u></p><br>
 </div> 
 
-<div class="gallery-container">
+<div class="gallery-container" id="simpleElegantCakes" style="display:none;">
+  
   <img src="simple_1.jpg" alt="Image 1">
   <img src="simple_2.jpg" alt="Image 2">
   <img src="simple_4.jpg" alt="Image 4">
@@ -686,6 +700,24 @@ hr {
     slideshowItems[slideshowIndex].classList.add('active');
   }
   setInterval(nextSlideshow, 7000);
+
+  function toggleCustomizedCakes() {
+    var customizedCakes = document.getElementById('customizedCakes');
+    if (customizedCakes.style.display === "none") {
+      customizedCakes.style.display = "block";
+    } else {
+      customizedCakes.style.display = "none";
+    }
+  }
+
+  function toggleSimpleElegantCakes() {
+    var simpleElegantCakes = document.getElementById('simpleElegantCakes');
+    if (simpleElegantCakes.style.display === "none") {
+      simpleElegantCakes.style.display = "block";
+    } else {
+      simpleElegantCakes.style.display = "none";
+    }
+  }
 </script>
 
 </body>
